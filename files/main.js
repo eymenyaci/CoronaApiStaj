@@ -82,8 +82,47 @@ const send = function () {
 }
 
 
+const renderChart = function (type = "bar", covids) {
+    let drawBackgroundColor =  function() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'X');
+        data.addColumn('number', 'Dogs');
 
-const renderChart = function (type = "bar", data) {
+
+        data.addRows([
+            [0, 0], [1, 10], [2, 23], [3, 17], [4, 18], [5, 9],
+            [6, 11], [7, 27], [8, 33], [9, 40], [10, 32], [11, 35],
+            [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
+            [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
+            [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
+            [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
+            [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
+            [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
+            [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
+            [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
+            [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
+            [66, 70], [67, 72], [68, 75], [69, 80]
+        ]);
+
+        var options = {
+            hAxis: {
+                title: 'Time'
+            },
+            vAxis: {
+                title: 'Popularity'
+            },
+            backgroundColor: '#f1f8e9'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart-wrap'));
+        chart.draw(data, options);
+    }
+
+    google.charts.load('current', { packages: ['corechart', 'line'] });
+    google.charts.setOnLoadCallback(drawBackgroundColor);
+}
+
+const renderChart_Orjinal = function (type = "bar", data) {
     console.log(typeof data);
     if (typeof data != "object" || data.length == 0 || data == undefined) {
         alert('Veriye ulaşılamadı, üzgünüz');
@@ -101,7 +140,7 @@ const renderChart = function (type = "bar", data) {
     let datasets = [];
 
 
-    for (var i = data.length - 30; i < data.length; i++)
+    for (var i = data.length - 60; i < data.length; i++)
     {
         var diff = 0;
         switch (selectedStatus) {
@@ -134,8 +173,9 @@ const renderChart = function (type = "bar", data) {
         }
         diff = diff < 0 ? diff * -1 : diff;
         var labeldate = new Date(data[i]["Date"]);
-        console.log(labeldate);
-        labels.push(labeldate.getDay() + "-" + labeldate.getMonth() + "-" + labeldate.getFullYear());
+        var parsedDate = moment(labeldate).format('MMMM DD YY');
+        console.log(parsedDate);
+        labels.push(parsedDate);
         datasets.push(diff);
     }
 

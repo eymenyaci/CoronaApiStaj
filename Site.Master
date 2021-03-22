@@ -10,11 +10,12 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="~/files/bootstrap.min.css" rel="stylesheet" />
     <link href="~/files/chart.min.css" rel="stylesheet" />
+
 </head>
 <body onload="init()">
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Corona Virus 2021</a>
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 ms-md-0 ms-5" href="#">Corona Virus 2021</a>
       <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -76,6 +77,7 @@
                 </form>
 
                 <div id="chart-wrap">
+
                     <%--<canvas id="main-chart" width="400" height="400"></canvas>--%>
                 </div>
 
@@ -88,5 +90,9 @@
     <script src="files/bootstrap.min.js"></script>
     <script src="files/chart.min.js"></script>
     <script src="files/main.js"></script>
+    <script src="files/moment.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 </body>
 </html>
